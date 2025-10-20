@@ -1,4 +1,3 @@
-// 📁 cms/config/plugins.ts
 import path from 'path';
 
 export default ({ env }) => ({
@@ -6,16 +5,14 @@ export default ({ env }) => ({
     config: {
       provider: 'local',
       providerOptions: {
-        // ✅ 업로드 용량 제한 (10MB)
-        sizeLimit: 10000000,
-
-        // ✅ 실제 업로드 파일 저장 경로
+        // ✅ Render 환경에서도 절대경로 지정
         localServer: {
+          maxage: 300000,
           path: path.join(__dirname, '..', '..', 'public', 'uploads'),
         },
       },
-      // ✅ 혹시 Strapi가 fallback 할 때 사용할 경로
-      uploadPath: path.join(__dirname, '..', '..', 'public', 'uploads'),
+      // ✅ public/uploads 폴더 자동 생성 경로
+      sizeLimit: 10000000, // 10MB
     },
   },
 });
