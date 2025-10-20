@@ -30,6 +30,11 @@ export default ({ env }) => ({
   // ✅ 관리자 패널 정적 리소스 경로 (pathname 오류 방지용)
   serveAdminPanel: true,
 
+  // ✅ 관리자 빌드 파일 경로 (Render 환경에서 필수)
+  app: {
+    buildPath: '/opt/render/project/src/build',
+  },
+
   // ✅ HTTPS 프록시 환경 대응
   proxy: true,
 
