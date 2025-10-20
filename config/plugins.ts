@@ -6,15 +6,18 @@ export default ({ env }) => ({
     config: {
       provider: 'local',
       providerOptions: {
-        sizeLimit: 10 * 1024 * 1024, // ✅ 10MB
+        // ✅ 파일 최대 크기 (10MB)
+        sizeLimit: 10 * 1024 * 1024,
+
+        // ✅ Render 환경 URL — PUBLIC_URL 값 기반
         localServer: {
-          // ✅ Render 환경 절대 URL
           url: env('PUBLIC_URL', 'https://cms-c5fx.onrender.com'),
           maxage: 300000,
         },
       },
-      // ✅ 절대경로로 지정 (Render 환경 필수)
-      uploadPath: path.join(process.cwd(), 'public', 'uploads'),
+
+      // ✅ 절대경로 기반 업로드 폴더 지정 (dist/admin/uploads 방지)
+      uploadPath: path.resolve(process.cwd(), 'public', 'uploads'),
     },
   },
 });
